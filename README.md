@@ -38,7 +38,7 @@ A comprehensive GitHub Pages site documenting my preparation for the **Microsoft
 - Key concepts and definitions
 - Important topics and insights
 - Personal learning notes
-- Searchable content
+- Searchable content with collapsible sections
 
 ## 🚀 Features
 
@@ -48,6 +48,7 @@ A comprehensive GitHub Pages site documenting my preparation for the **Microsoft
 - **Search Functionality** - Quick access to specific notes
 - **Progress Visualization** - Track your study journey
 - **Smooth Navigation** - Easy section navigation
+- **Collapsible Sections** - Organize and hide content as needed
 - **Accessibility** - Keyboard navigation and screen reader support
 
 ## 🛠️ Technical Details
@@ -56,7 +57,7 @@ A comprehensive GitHub Pages site documenting my preparation for the **Microsoft
 - **HTML5** - Semantic markup
 - **CSS3** - Modern styling with Flexbox and Grid
 - **JavaScript (ES6+)** - Interactive functionality
-- **Font Awesome** - Icons
+- **Font Awesome 6.4.0** - Icons
 - **Google Fonts** - Typography
 
 ### Key Features
@@ -65,6 +66,7 @@ A comprehensive GitHub Pages site documenting my preparation for the **Microsoft
 - Intersection Observer API for scroll animations
 - Local storage for user preferences
 - Progressive enhancement
+- Collapsible content sections
 
 ## 📱 Responsive Design
 
@@ -100,22 +102,23 @@ The site is fully responsive and optimized for:
 
 ## 📚 Study Methodology
 
-### Phase 1: Foundation (Weeks 1-2)
+### Phase 1: Foundation (Weeks 1-2) - December 19, 2024
 - Microsoft Fabric overview
 - Power BI basics
 - Data modeling concepts
+- DP-700 Fabric Components Quick-Reference Table
 
-### Phase 2: Core Skills (Weeks 3-4)
+### Phase 2: Core Skills (Weeks 3-4) - December 26, 2024
 - Data transformation with Power Query
 - DAX fundamentals
 - Semantic model design
 
-### Phase 3: Advanced Topics (Weeks 5-6)
+### Phase 3: Advanced Topics (Weeks 5-6) - January 2, 2025
 - Advanced DAX patterns
 - Performance optimization
 - Deployment and governance
 
-### Phase 4: Practice & Review (Weeks 7-8)
+### Phase 4: Practice & Review (Weeks 7-8) - January 9, 2025
 - Practice tests
 - Weak area review
 - Exam strategies

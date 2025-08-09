@@ -6,7 +6,7 @@
     <title>DP-700 Exam Preparation Journey</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -195,27 +195,51 @@
                     <div class="filter-controls">
                         <button class="filter-btn active" data-filter="all">All Notes</button>
                         <button class="filter-btn" data-filter="recent">Recent (7 days)</button>
-                        <button class="filter-btn" data-filter="week1">Week 1-2</button>
-                        <button class="filter-btn" data-filter="week2">Week 3-4</button>
-                        <button class="filter-btn" data-filter="week3">Week 5-6</button>
-                        <button class="filter-btn" data-filter="week4">Week 7-8</button>
+                        <button class="filter-btn" data-filter="today">Today</button>
+                        <button class="filter-btn" data-filter="week">This Week</button>
+                        <button class="filter-btn" data-filter="month">This Month</button>
                     </div>
                 </div>
 
-                <!-- Notes Container with Date Organization -->
+                <!-- Notes Container with Chronological Organization -->
                 <div class="notes-container">
-                    <!-- Week 1-2 Notes -->
-                    <div class="notes-date-group" data-week="week1">
-                        <div class="date-header" data-date="2024-01-15">
-                            <h3><i class="fas fa-calendar-day"></i> Week 1-2: Foundation Phase</h3>
-                            <span class="date-badge">January 15, 2024</span>
-                            <button class="collapse-btn" aria-label="Collapse section">
-                                <i class="fas fa-chevron-up"></i>
+                    <!-- Note Entry Form -->
+                    <div class="add-note-form">
+                        <h3><i class="fas fa-plus-circle"></i> Add New Note</h3>
+                        <form id="note-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="note-title">Title</label>
+                                    <input type="text" id="note-title" placeholder="Enter note title..." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="note-date">Date</label>
+                                    <input type="date" id="note-date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="note-content">Content</label>
+                                <textarea id="note-content" placeholder="Enter your note content..." rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="note-tags">Tags (comma-separated)</label>
+                                <input type="text" id="note-tags" placeholder="e.g., DAX, Power BI, Architecture">
+                            </div>
+                            <button type="submit" class="add-note-btn">
+                                <i class="fas fa-plus"></i> Add Note
                             </button>
-                        </div>
-                        <div class="notes-content">
-                            <div class="note-card">
+                        </form>
+                    </div>
+
+                    <!-- Chronological Notes List -->
+                    <div id="chronological-notes">
+                        <!-- Sample Notes (will be replaced by dynamic content) -->
+                        <div class="note-entry" data-date="2024-12-19" data-timestamp="1734566400000">
+                            <div class="note-header">
                                 <h4>Microsoft Fabric Architecture</h4>
+                                <span class="note-date">December 19, 2024</span>
+                            </div>
+                            <div class="note-content">
                                 <p>Microsoft Fabric is a unified analytics platform that brings together Power BI, Azure Synapse Analytics, and Azure Data Factory into a single SaaS offering.</p>
                                 <ul>
                                     <li>OneLake - unified data lake for the entire organization</li>
@@ -223,40 +247,59 @@
                                     <li>Data Factory - data movement and transformation</li>
                                     <li>Synapse Analytics - data warehousing and analytics</li>
                                 </ul>
-                                <div class="note-tags">
-                                    <span class="tag">Architecture</span>
-                                    <span class="tag">Foundation</span>
-                                </div>
                             </div>
-                            
-                            <div class="note-card">
-                                <h4>Power BI Service vs Desktop</h4>
-                                <p>Understanding the differences between Power BI Desktop (authoring tool) and Power BI Service (cloud platform).</p>
-                                <ul>
-                                    <li>Desktop: Create reports and datasets</li>
-                                    <li>Service: Share, collaborate, and manage content</li>
-                                    <li>Gateway: Connect on-premises data sources</li>
-                                </ul>
-                                <div class="note-tags">
-                                    <span class="tag">Power BI</span>
-                                    <span class="tag">Tools</span>
-                                </div>
+                            <div class="note-tags">
+                                <span class="tag">Architecture</span>
+                                <span class="tag">Foundation</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Week 3-4 Notes -->
-                    <div class="notes-date-group" data-week="week2">
-                        <div class="date-header" data-date="2024-01-29">
-                            <h3><i class="fas fa-calendar-day"></i> Week 3-4: Core Skills Phase</h3>
-                            <span class="date-badge">January 29, 2024</span>
-                            <button class="collapse-btn" aria-label="Collapse section">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
+                        <div class="note-entry" data-date="2024-12-26" data-timestamp="1735171200000">
+                            <div class="note-header">
+                                <h4>Data Transformation with Power Query</h4>
+                                <span class="note-date">December 26, 2024</span>
+                            </div>
+                            <div class="note-content">
+                                <p>Understanding Power Query M language and data transformation techniques.</p>
+                                <ul>
+                                    <li>Data source connections</li>
+                                    <li>Data cleaning and transformation</li>
+                                    <li>M language fundamentals</li>
+                                    <li>Query folding and performance</li>
+                                </ul>
+                            </div>
+                            <div class="note-tags">
+                                <span class="tag">Power Query</span>
+                                <span class="tag">Data Transformation</span>
+                            </div>
                         </div>
-                        <div class="notes-content">
-                            <div class="note-card wide-card">
+
+                        <div class="note-entry" data-date="2025-01-02" data-timestamp="1735776000000">
+                            <div class="note-header">
+                                <h4>Advanced DAX Patterns</h4>
+                                <span class="note-date">January 2, 2025</span>
+                            </div>
+                            <div class="note-content">
+                                <p>Complex DAX formulas and patterns for advanced analytics scenarios.</p>
+                                <ul>
+                                    <li>Time intelligence functions</li>
+                                    <li>Row context vs filter context</li>
+                                    <li>CALCULATE and CALCULATETABLE</li>
+                                    <li>Performance optimization techniques</li>
+                                </ul>
+                            </div>
+                            <div class="note-tags">
+                                <span class="tag">DAX</span>
+                                <span class="tag">Advanced</span>
+                            </div>
+                        </div>
+
+                        <div class="note-entry wide-note" data-date="2025-01-09" data-timestamp="1736380800000">
+                            <div class="note-header">
                                 <h4>DP-700 Fabric Components Quick-Reference Table</h4>
+                                <span class="note-date">January 9, 2025</span>
+                            </div>
+                            <div class="note-content">
                                 <p>Essential Fabric components and their use cases for the DP-700 exam:</p>
                                 <div class="table-container">
                                     <table class="fabric-table">
@@ -321,68 +364,15 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="note-tags">
-                                    <span class="tag">Reference</span>
-                                    <span class="tag">Components</span>
-                                    <span class="tag">Exam Prep</span>
-                                </div>
+                            </div>
+                            <div class="note-tags">
+                                <span class="tag">Reference</span>
+                                <span class="tag">Components</span>
+                                <span class="tag">Exam Prep</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Week 5-6 Notes -->
-                    <div class="notes-date-group" data-week="week3">
-                        <div class="date-header" data-date="2024-02-12">
-                            <h3><i class="fas fa-calendar-day"></i> Week 5-6: Advanced Topics Phase</h3>
-                            <span class="date-badge">February 12, 2024</span>
-                            <button class="collapse-btn" aria-label="Collapse section">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="notes-content">
-                            <div class="note-card">
-                                <h4>Advanced DAX Patterns</h4>
-                                <p>Complex DAX formulas and patterns for advanced analytics scenarios.</p>
-                                <ul>
-                                    <li>Time intelligence functions</li>
-                                    <li>Row context vs filter context</li>
-                                    <li>CALCULATE and CALCULATETABLE</li>
-                                    <li>Performance optimization techniques</li>
-                                </ul>
-                                <div class="note-tags">
-                                    <span class="tag">DAX</span>
-                                    <span class="tag">Advanced</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Week 7-8 Notes -->
-                    <div class="notes-date-group" data-week="week4">
-                        <div class="date-header" data-date="2024-02-26">
-                            <h3><i class="fas fa-calendar-day"></i> Week 7-8: Practice & Review Phase</h3>
-                            <span class="date-badge">February 26, 2024</span>
-                            <button class="collapse-btn" aria-label="Collapse section">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="notes-content">
-                            <div class="note-card">
-                                <h4>Exam Strategies & Tips</h4>
-                                <p>Key strategies for approaching the DP-700 exam effectively.</p>
-                                <ul>
-                                    <li>Read questions carefully - look for keywords</li>
-                                    <li>Eliminate obviously wrong answers first</li>
-                                    <li>Manage time - don't spend too long on one question</li>
-                                    <li>Review marked questions before submitting</li>
-                                </ul>
-                                <div class="note-tags">
-                                    <span class="tag">Strategy</span>
-                                    <span class="tag">Exam Tips</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
                     <!-- Add New Note Button -->
                     <div class="add-note-section">

@@ -1,8 +1,5 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current dates
-    setCurrentDates();
-    
     // Set last updated date
     setLastUpdated();
     
@@ -19,23 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setupInteractiveFeatures();
 });
 
-// Set current dates in note cards
+// Set current dates in note cards (no longer needed with chronological system)
 function setCurrentDates() {
-    const currentDate = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    const dateElements = document.querySelectorAll('#current-date, #current-date-2, #current-date-3');
-    dateElements.forEach(element => {
-        element.textContent = currentDate;
-    });
+    // This function is no longer needed with the new chronological notes system
+    // Notes now have their own dates that are set when created
 }
 
 // Set last updated date in footer
 function setLastUpdated() {
-    const lastUpdated = new Date().toLocaleDateString('en-US', {
+    const now = new Date();
+    const lastUpdated = now.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -140,7 +130,7 @@ function setupScrollAnimations() {
 // Setup interactive features
 function setupInteractiveFeatures() {
     // Add hover effects for cards
-    const cards = document.querySelectorAll('.card, .resource-card, .note-card');
+    const cards = document.querySelectorAll('.card, .resource-card, .note-entry');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -157,6 +147,18 @@ function setupInteractiveFeatures() {
     
     // Add search functionality for notes
     setupSearchFunctionality();
+    
+    // Setup note form functionality
+    setupNoteForm();
+    
+    // Setup filter functionality
+    setupFilterFunctionality();
+    
+    // Sort notes chronologically
+    sortNotesChronologically();
+    
+    // Initialize existing notes with proper timestamps
+    initializeExistingNotes();
 }
 
 // Setup copy to clipboard functionality
@@ -182,38 +184,209 @@ function setupCopyToClipboard() {
 
 // Setup search functionality for notes
 function setupSearchFunctionality() {
-    // Create search input
-    const searchContainer = document.createElement('div');
-    searchContainer.className = 'search-container';
-    searchContainer.innerHTML = `
-        <input type="text" id="search-notes" placeholder="Search notes..." class="search-input">
-        <i class="fas fa-search search-icon"></i>
-    `;
-    
-    const notesSection = document.querySelector('#notes');
-    if (notesSection) {
-        notesSection.insertBefore(searchContainer, notesSection.querySelector('.notes-container'));
-    }
-    
-    // Add search functionality
+    // Search functionality is now handled by the HTML form
     const searchInput = document.getElementById('search-notes');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
-            const noteCards = document.querySelectorAll('.note-card');
+            const noteEntries = document.querySelectorAll('.note-entry');
             
-            noteCards.forEach(card => {
-                const text = card.textContent.toLowerCase();
+            noteEntries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
                 if (text.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    card.style.opacity = '1';
+                    entry.style.display = 'block';
+                    entry.style.opacity = '1';
                 } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
+                    entry.style.display = 'none';
+                    entry.style.opacity = '0';
                 }
             });
         });
     }
+}
+
+// Setup note form functionality
+function setupNoteForm() {
+    const noteForm = document.getElementById('note-form');
+    if (noteForm) {
+        // Set default date to today
+        const dateInput = document.getElementById('note-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        }
+        
+        noteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('note-title').value;
+            const date = document.getElementById('note-date').value;
+            const content = document.getElementById('note-content').value;
+            const tags = document.getElementById('note-tags').value;
+            
+            if (title && date && content) {
+                addNewNote(title, date, content, tags);
+                
+                // Reset form
+                noteForm.reset();
+                dateInput.value = today;
+                
+                showToast('Note added successfully!');
+            }
+        });
+    }
+}
+
+// Add new note to the chronological list
+function addNewNote(title, date, content, tags) {
+    const notesContainer = document.getElementById('chronological-notes');
+    if (!notesContainer) return;
+    
+    // Create timestamp for sorting
+    const timestamp = new Date(date).getTime();
+    
+    // Create note entry
+    const noteEntry = document.createElement('div');
+    noteEntry.className = 'note-entry';
+    noteEntry.setAttribute('data-date', date);
+    noteEntry.setAttribute('data-timestamp', timestamp);
+    
+    // Format date for display
+    const displayDate = new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    // Create note HTML
+    noteEntry.innerHTML = `
+        <div class="note-header">
+            <h4>${title}</h4>
+            <span class="note-date">${displayDate}</span>
+        </div>
+        <div class="note-content">
+            <p>${content}</p>
+        </div>
+        <div class="note-tags">
+            ${tags ? tags.split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('') : ''}
+        </div>
+    `;
+    
+    // Add hover effects
+    noteEntry.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+    });
+    
+    noteEntry.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+    
+    // Insert at the beginning (most recent first)
+    notesContainer.insertBefore(noteEntry, notesContainer.firstChild);
+    
+    // Re-sort notes
+    sortNotesChronologically();
+}
+
+// Sort notes chronologically (newest first)
+function sortNotesChronologically() {
+    const notesContainer = document.getElementById('chronological-notes');
+    if (!notesContainer) return;
+    
+    const noteEntries = Array.from(notesContainer.querySelectorAll('.note-entry'));
+    
+    // Sort by timestamp (newest first)
+    noteEntries.sort((a, b) => {
+        const timestampA = parseInt(a.getAttribute('data-timestamp'));
+        const timestampB = parseInt(b.getAttribute('data-timestamp'));
+        return timestampB - timestampA;
+    });
+    
+    // Re-append in sorted order
+    noteEntries.forEach(entry => {
+        notesContainer.appendChild(entry);
+    });
+}
+
+// Setup filter functionality
+function setupFilterFunctionality() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const filter = this.getAttribute('data-filter');
+            filterNotes(filter);
+        });
+    });
+}
+
+// Initialize existing notes with proper timestamps
+function initializeExistingNotes() {
+    const noteEntries = document.querySelectorAll('.note-entry');
+    
+    noteEntries.forEach(entry => {
+        const dateAttr = entry.getAttribute('data-date');
+        if (dateAttr && !entry.hasAttribute('data-timestamp')) {
+            const timestamp = new Date(dateAttr).getTime();
+            entry.setAttribute('data-timestamp', timestamp);
+        }
+    });
+}
+
+// Filter notes based on selected filter
+function filterNotes(filter) {
+    const noteEntries = document.querySelectorAll('.note-entry');
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    
+    noteEntries.forEach(entry => {
+        const noteDate = entry.getAttribute('data-date');
+        const noteTimestamp = parseInt(entry.getAttribute('data-timestamp'));
+        const noteDateObj = new Date(noteTimestamp);
+        
+        let show = true;
+        
+        switch (filter) {
+            case 'recent':
+                // Show notes from last 7 days
+                const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                show = noteDateObj >= weekAgo;
+                break;
+            case 'today':
+                // Show only today's notes
+                show = noteDate === todayStr;
+                break;
+            case 'week':
+                // Show notes from this week (Monday to Sunday)
+                const startOfWeek = new Date(today);
+                startOfWeek.setDate(today.getDate() - today.getDay() + 1);
+                startOfWeek.setHours(0, 0, 0, 0);
+                show = noteDateObj >= startOfWeek;
+                break;
+            case 'month':
+                // Show notes from this month
+                const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                show = noteDateObj >= startOfMonth;
+                break;
+            case 'all':
+            default:
+                show = true;
+                break;
+        }
+        
+        if (show) {
+            entry.style.display = 'block';
+            entry.style.opacity = '1';
+        } else {
+            entry.style.display = 'none';
+            entry.style.opacity = '0';
+        }
+    });
 }
 
 // Show toast notification
@@ -292,10 +465,10 @@ document.addEventListener('keydown', function(e) {
 const searchStyles = `
     .search-container {
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 0;
         max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
     }
     
     .search-input {
