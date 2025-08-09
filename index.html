@@ -185,27 +185,210 @@
 
             <section id="notes" class="section">
                 <h2><i class="fas fa-sticky-note"></i> Study Notes</h2>
-                <div class="notes-container">
-                    <div class="note-card">
-                        <h3>Microsoft Fabric Architecture</h3>
-                        <p><strong>Date:</strong> <span id="current-date"></span></p>
-                        <p>Microsoft Fabric is a unified analytics platform that brings together Power BI, Azure Synapse Analytics, and Azure Data Factory into a single SaaS offering.</p>
-                        <ul>
-                            <li>OneLake - unified data lake for the entire organization</li>
-                            <li>Workspaces - collaborative environments for teams</li>
-                            <li>Data Factory - data movement and transformation</li>
-                            <li>Synapse Analytics - data warehousing and analytics</li>
-                        </ul>
+                
+                <!-- Enhanced Search and Filter Controls -->
+                <div class="notes-controls">
+                    <div class="search-container">
+                        <input type="text" id="search-notes" placeholder="Search all notes..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
                     </div>
-                    <div class="note-card">
-                        <h3>Power BI Service vs Desktop</h3>
-                        <p><strong>Date:</strong> <span id="current-date-2"></span></p>
-                        <p>Understanding the differences between Power BI Desktop (authoring tool) and Power BI Service (cloud platform).</p>
-                        <ul>
-                            <li>Desktop: Create reports and datasets</li>
-                            <li>Service: Share, collaborate, and manage content</li>
-                            <li>Gateway: Connect on-premises data sources</li>
-                        </ul>
+                    <div class="filter-controls">
+                        <button class="filter-btn active" data-filter="all">All Notes</button>
+                        <button class="filter-btn" data-filter="recent">Recent (7 days)</button>
+                        <button class="filter-btn" data-filter="week1">Week 1-2</button>
+                        <button class="filter-btn" data-filter="week2">Week 3-4</button>
+                        <button class="filter-btn" data-filter="week3">Week 5-6</button>
+                        <button class="filter-btn" data-filter="week4">Week 7-8</button>
+                    </div>
+                </div>
+
+                <!-- Notes Container with Date Organization -->
+                <div class="notes-container">
+                    <!-- Week 1-2 Notes -->
+                    <div class="notes-date-group" data-week="week1">
+                        <div class="date-header" data-date="2024-01-15">
+                            <h3><i class="fas fa-calendar-day"></i> Week 1-2: Foundation Phase</h3>
+                            <span class="date-badge">January 15, 2024</span>
+                            <button class="collapse-btn" aria-label="Collapse section">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div class="notes-content">
+                            <div class="note-card">
+                                <h4>Microsoft Fabric Architecture</h4>
+                                <p>Microsoft Fabric is a unified analytics platform that brings together Power BI, Azure Synapse Analytics, and Azure Data Factory into a single SaaS offering.</p>
+                                <ul>
+                                    <li>OneLake - unified data lake for the entire organization</li>
+                                    <li>Workspaces - collaborative environments for teams</li>
+                                    <li>Data Factory - data movement and transformation</li>
+                                    <li>Synapse Analytics - data warehousing and analytics</li>
+                                </ul>
+                                <div class="note-tags">
+                                    <span class="tag">Architecture</span>
+                                    <span class="tag">Foundation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="note-card">
+                                <h4>Power BI Service vs Desktop</h4>
+                                <p>Understanding the differences between Power BI Desktop (authoring tool) and Power BI Service (cloud platform).</p>
+                                <ul>
+                                    <li>Desktop: Create reports and datasets</li>
+                                    <li>Service: Share, collaborate, and manage content</li>
+                                    <li>Gateway: Connect on-premises data sources</li>
+                                </ul>
+                                <div class="note-tags">
+                                    <span class="tag">Power BI</span>
+                                    <span class="tag">Tools</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 3-4 Notes -->
+                    <div class="notes-date-group" data-week="week2">
+                        <div class="date-header" data-date="2024-01-29">
+                            <h3><i class="fas fa-calendar-day"></i> Week 3-4: Core Skills Phase</h3>
+                            <span class="date-badge">January 29, 2024</span>
+                            <button class="collapse-btn" aria-label="Collapse section">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div class="notes-content">
+                            <div class="note-card wide-card">
+                                <h4>DP-700 Fabric Components Quick-Reference Table</h4>
+                                <p>Essential Fabric components and their use cases for the DP-700 exam:</p>
+                                <div class="table-container">
+                                    <table class="fabric-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Component</th>
+                                                <th>What It Does</th>
+                                                <th>When to Use in Exam Scenario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>OneLake</strong></td>
+                                                <td>Single, unified data lake for all Fabric data</td>
+                                                <td>Any data at rest in Fabric lives here</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Lakehouse</strong></td>
+                                                <td>Combines data lake + warehouse in one</td>
+                                                <td>Store both raw and structured data together</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Warehouse</strong></td>
+                                                <td>Pure structured, SQL-based store in Fabric</td>
+                                                <td>Analytical queries on relational/tabular data</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Factory</strong></td>
+                                                <td>ETL/ELT pipelines for batch/scheduled data movement</td>
+                                                <td>Move data from source to Fabric in bulk</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Eventstream</strong></td>
+                                                <td>Real-time streaming ingestion</td>
+                                                <td>IoT, clickstreams, live data feeds</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Synapse Data Warehouse</strong></td>
+                                                <td>Query structured data at scale</td>
+                                                <td>Large datasets needing SQL analytics</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Synapse Data Science</strong></td>
+                                                <td>Notebooks + ML in Fabric</td>
+                                                <td>Machine learning or big data exploration</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Power BI</strong></td>
+                                                <td>Reports & dashboards</td>
+                                                <td>Visualizing and sharing insights</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Activator</strong></td>
+                                                <td>Data monitoring + triggers</td>
+                                                <td>Automating alerts/actions when data changes</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Notebooks</strong></td>
+                                                <td>Code-based data analysis</td>
+                                                <td>Advanced analytics with Python, R, or Spark</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="note-tags">
+                                    <span class="tag">Reference</span>
+                                    <span class="tag">Components</span>
+                                    <span class="tag">Exam Prep</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 5-6 Notes -->
+                    <div class="notes-date-group" data-week="week3">
+                        <div class="date-header" data-date="2024-02-12">
+                            <h3><i class="fas fa-calendar-day"></i> Week 5-6: Advanced Topics Phase</h3>
+                            <span class="date-badge">February 12, 2024</span>
+                            <button class="collapse-btn" aria-label="Collapse section">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div class="notes-content">
+                            <div class="note-card">
+                                <h4>Advanced DAX Patterns</h4>
+                                <p>Complex DAX formulas and patterns for advanced analytics scenarios.</p>
+                                <ul>
+                                    <li>Time intelligence functions</li>
+                                    <li>Row context vs filter context</li>
+                                    <li>CALCULATE and CALCULATETABLE</li>
+                                    <li>Performance optimization techniques</li>
+                                </ul>
+                                <div class="note-tags">
+                                    <span class="tag">DAX</span>
+                                    <span class="tag">Advanced</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 7-8 Notes -->
+                    <div class="notes-date-group" data-week="week4">
+                        <div class="date-header" data-date="2024-02-26">
+                            <h3><i class="fas fa-calendar-day"></i> Week 7-8: Practice & Review Phase</h3>
+                            <span class="date-badge">February 26, 2024</span>
+                            <button class="collapse-btn" aria-label="Collapse section">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div class="notes-content">
+                            <div class="note-card">
+                                <h4>Exam Strategies & Tips</h4>
+                                <p>Key strategies for approaching the DP-700 exam effectively.</p>
+                                <ul>
+                                    <li>Read questions carefully - look for keywords</li>
+                                    <li>Eliminate obviously wrong answers first</li>
+                                    <li>Manage time - don't spend too long on one question</li>
+                                    <li>Review marked questions before submitting</li>
+                                </ul>
+                                <div class="note-tags">
+                                    <span class="tag">Strategy</span>
+                                    <span class="tag">Exam Tips</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Note Button -->
+                    <div class="add-note-section">
+                        <button class="add-note-btn" id="add-note-btn">
+                            <i class="fas fa-plus"></i> Add New Study Note
+                        </button>
                     </div>
                 </div>
             </section>

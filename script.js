@@ -27,7 +27,7 @@ function setCurrentDates() {
         day: 'numeric'
     });
     
-    const dateElements = document.querySelectorAll('#current-date, #current-date-2');
+    const dateElements = document.querySelectorAll('#current-date, #current-date-2, #current-date-3');
     dateElements.forEach(element => {
         element.textContent = currentDate;
     });
