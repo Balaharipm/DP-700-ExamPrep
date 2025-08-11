@@ -315,6 +315,66 @@
                                 <span class="tag">Reference</span>
                             </div>
                         </div>
+                        <div class="note-entry wide-note" data-date="2025-08-11">
+                            <div class="note-header">
+                                <h4>Data Warehouse: Schemas, Semantic Model, DMVs</h4>
+                                <span class="note-date">August 11, 2025</span>
+                            </div>
+                            <div class="note-content">
+<pre>
+                  ┌─────────────────────────────┐
+                  │       DATA WAREHOUSE        │
+                  └─────────────────────────────┘
+                             │
+         ┌───────────────────┼───────────────────┐
+         │                   │                   │
+   ┌────────────┐     ┌──────────────┐    ┌────────────────┐
+   │ FACT TABLE │     │ DIM TABLES   │    │ SCHEMA DESIGN   │
+   └────────────┘     └──────────────┘    └────────────────┘
+        │                   │                  │
+  - Numeric measures  - Descriptive data   ┌───────────────┐
+  - Foreign keys       - Linked to facts   │ STAR SCHEMA   │
+  - E.g. sales_amt     - E.g. product,     │  (denormal)   │
+                       │  date, customer  └───────────────┘
+                                           │  Central Fact
+                                           │  + multiple
+                                           │  Dim tables
+                                           │  Fast queries
+                                           └───────────────┐
+                                                           │
+                                           ┌───────────────┴───────────────┐
+                                           │ SNOWFLAKE SCHEMA (normalized) │
+                                           └───────────────────────────────┘
+                                              Dim tables split into sub-dims
+                                              Space efficient, slower joins
+
+                             ┌──────────────────────────────┐
+                             │ DATA ORGANIZATION STRATEGIES │
+                             └──────────────────────────────┘
+                               - Normalized: minimal redundancy
+                               - Denormalized: faster reads
+
+                             ┌─────────────────────────────────┐
+                             │ SEMANTIC MODEL                   │
+                             └─────────────────────────────────┘
+                               - Business-friendly layer
+                               - Measures, relationships, KPIs
+                               - **Default semantic model** auto-created
+                                 in Fabric Warehouse/Lakehouse
+
+                             ┌─────────────────────────────────┐
+                             │ DYNAMIC MANAGEMENT VIEWS (DMVs) │
+                             └─────────────────────────────────┘
+                               - System metadata & monitoring
+                               - Performance tuning
+</pre>
+                            </div>
+                            <div class="note-tags">
+                                <span class="tag">Data Warehouse</span>
+                                <span class="tag">Schema</span>
+                                <span class="tag">DMVs</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
