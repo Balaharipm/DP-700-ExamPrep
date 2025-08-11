@@ -185,200 +185,60 @@
 
             <section id="notes" class="section">
                 <h2><i class="fas fa-sticky-note"></i> Study Notes</h2>
-                
-                <!-- Enhanced Search and Filter Controls -->
-                <div class="notes-controls">
-                    <div class="search-container">
-                        <input type="text" id="search-notes" placeholder="Search all notes..." class="search-input">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                    <div class="filter-controls">
-                        <button class="filter-btn active" data-filter="all">All Notes</button>
-                        <button class="filter-btn" data-filter="recent">Recent (7 days)</button>
-                        <button class="filter-btn" data-filter="today">Today</button>
-                        <button class="filter-btn" data-filter="week">This Week</button>
-                        <button class="filter-btn" data-filter="month">This Month</button>
-                    </div>
-                </div>
 
-                <!-- Notes Container with Chronological Organization -->
                 <div class="notes-container">
-                    <!-- Note Entry Form -->
-                    <div class="add-note-form">
-                        <h3><i class="fas fa-plus-circle"></i> Add New Note</h3>
-                        <form id="note-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="note-title">Title</label>
-                                    <input type="text" id="note-title" placeholder="Enter note title..." required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="note-date">Date</label>
-                                    <input type="date" id="note-date" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="note-content">Content</label>
-                                <textarea id="note-content" placeholder="Enter your note content..." rows="4" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="note-tags">Tags (comma-separated)</label>
-                                <input type="text" id="note-tags" placeholder="e.g., DAX, Power BI, Architecture">
-                            </div>
-                            <button type="submit" class="add-note-btn">
-                                <i class="fas fa-plus"></i> Add Note
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Chronological Notes List -->
                     <div id="chronological-notes">
-                        <!-- Sample Notes (will be replaced by dynamic content) -->
-                        <div class="note-entry" data-date="2024-12-19" data-timestamp="1734566400000">
+                        <div class="note-entry wide-note" data-date="2025-08-11">
                             <div class="note-header">
-                                <h4>Microsoft Fabric Architecture</h4>
-                                <span class="note-date">December 19, 2024</span>
+                                <h4>🏗️ Data Warehouse vs. Data Lakehouse in Fabric</h4>
+                                <span class="note-date">August 11, 2025</span>
                             </div>
                             <div class="note-content">
-                                <p>Microsoft Fabric is a unified analytics platform that brings together Power BI, Azure Synapse Analytics, and Azure Data Factory into a single SaaS offering.</p>
-                                <ul>
-                                    <li>OneLake - unified data lake for the entire organization</li>
-                                    <li>Workspaces - collaborative environments for teams</li>
-                                    <li>Data Factory - data movement and transformation</li>
-                                    <li>Synapse Analytics - data warehousing and analytics</li>
-                                </ul>
-                            </div>
-                            <div class="note-tags">
-                                <span class="tag">Architecture</span>
-                                <span class="tag">Foundation</span>
-                            </div>
-                        </div>
-
-                        <div class="note-entry" data-date="2024-12-26" data-timestamp="1735171200000">
-                            <div class="note-header">
-                                <h4>Data Transformation with Power Query</h4>
-                                <span class="note-date">December 26, 2024</span>
-                            </div>
-                            <div class="note-content">
-                                <p>Understanding Power Query M language and data transformation techniques.</p>
-                                <ul>
-                                    <li>Data source connections</li>
-                                    <li>Data cleaning and transformation</li>
-                                    <li>M language fundamentals</li>
-                                    <li>Query folding and performance</li>
-                                </ul>
-                            </div>
-                            <div class="note-tags">
-                                <span class="tag">Power Query</span>
-                                <span class="tag">Data Transformation</span>
-                            </div>
-                        </div>
-
-                        <div class="note-entry" data-date="2025-01-02" data-timestamp="1735776000000">
-                            <div class="note-header">
-                                <h4>Advanced DAX Patterns</h4>
-                                <span class="note-date">January 2, 2025</span>
-                            </div>
-                            <div class="note-content">
-                                <p>Complex DAX formulas and patterns for advanced analytics scenarios.</p>
-                                <ul>
-                                    <li>Time intelligence functions</li>
-                                    <li>Row context vs filter context</li>
-                                    <li>CALCULATE and CALCULATETABLE</li>
-                                    <li>Performance optimization techniques</li>
-                                </ul>
-                            </div>
-                            <div class="note-tags">
-                                <span class="tag">DAX</span>
-                                <span class="tag">Advanced</span>
-                            </div>
-                        </div>
-
-                        <div class="note-entry wide-note" data-date="2025-01-09" data-timestamp="1736380800000">
-                            <div class="note-header">
-                                <h4>DP-700 Fabric Components Quick-Reference Table</h4>
-                                <span class="note-date">January 9, 2025</span>
-                            </div>
-                            <div class="note-content">
-                                <p>Essential Fabric components and their use cases for the DP-700 exam:</p>
                                 <div class="table-container">
                                     <table class="fabric-table">
                                         <thead>
                                             <tr>
-                                                <th>Component</th>
-                                                <th>What It Does</th>
-                                                <th>When to Use in Exam Scenario</th>
+                                                <th>Feature</th>
+                                                <th>Data Warehouse</th>
+                                                <th>Lakehouse</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><strong>OneLake</strong></td>
-                                                <td>Single, unified data lake for all Fabric data</td>
-                                                <td>Any data at rest in Fabric lives here</td>
+                                                <td>Data type</td>
+                                                <td>Only structured (tables, schema)</td>
+                                                <td>Structured + semi-structured + unstructured</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Lakehouse</strong></td>
-                                                <td>Combines data lake + warehouse in one</td>
-                                                <td>Store both raw and structured data together</td>
+                                                <td>Purpose</td>
+                                                <td>High-performance SQL analytics</td>
+                                                <td>Flexible storage + analytics in one place</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Data Warehouse</strong></td>
-                                                <td>Pure structured, SQL-based store in Fabric</td>
-                                                <td>Analytical queries on relational/tabular data</td>
+                                                <td>Storage</td>
+                                                <td>Tabular format (optimized for queries)</td>
+                                                <td>Files + tables together</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Data Factory</strong></td>
-                                                <td>ETL/ELT pipelines for batch/scheduled data movement</td>
-                                                <td>Move data from source to Fabric in bulk</td>
+                                                <td>Flexibility</td>
+                                                <td>Rigid schema, fast queries</td>
+                                                <td>Can hold raw files and queryable tables</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Eventstream</strong></td>
-                                                <td>Real-time streaming ingestion</td>
-                                                <td>IoT, clickstreams, live data feeds</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Synapse Data Warehouse</strong></td>
-                                                <td>Query structured data at scale</td>
-                                                <td>Large datasets needing SQL analytics</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Synapse Data Science</strong></td>
-                                                <td>Notebooks + ML in Fabric</td>
-                                                <td>Machine learning or big data exploration</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Power BI</strong></td>
-                                                <td>Reports & dashboards</td>
-                                                <td>Visualizing and sharing insights</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Data Activator</strong></td>
-                                                <td>Data monitoring + triggers</td>
-                                                <td>Automating alerts/actions when data changes</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Notebooks</strong></td>
-                                                <td>Code-based data analysis</td>
-                                                <td>Advanced analytics with Python, R, or Spark</td>
+                                                <td>Best for</td>
+                                                <td>Business reporting, consistent KPIs</td>
+                                                <td>Mixing raw data with structured data, exploratory analytics</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="note-tags">
-                                <span class="tag">Reference</span>
-                                <span class="tag">Components</span>
-                                <span class="tag">Exam Prep</span>
+                                <span class="tag">Lakehouse</span>
+                                <span class="tag">Data Warehouse</span>
+                                <span class="tag">Fabric</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                    <!-- Add New Note Button -->
-                    <div class="add-note-section">
-                        <button class="add-note-btn" id="add-note-btn">
-                            <i class="fas fa-plus"></i> Add New Study Note
-                        </button>
                     </div>
                 </div>
             </section>

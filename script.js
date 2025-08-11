@@ -145,20 +145,7 @@ function setupInteractiveFeatures() {
     // Add click to copy functionality for code snippets (if any)
     setupCopyToClipboard();
     
-    // Add search functionality for notes
-    setupSearchFunctionality();
-    
-    // Setup note form functionality
-    setupNoteForm();
-    
-    // Setup filter functionality
-    setupFilterFunctionality();
-    
-    // Sort notes chronologically
-    sortNotesChronologically();
-    
-    // Initialize existing notes with proper timestamps
-    initializeExistingNotes();
+    // Notes are static on this page; interactive note features disabled
 }
 
 // Setup copy to clipboard functionality
