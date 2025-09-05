@@ -2,6 +2,8 @@
 title: DP-700 Exam Preparation Journey
 description: Comprehensive study guide and progress tracking for Microsoft DP-700 certification exam
 author: Balaharipreetha Muthu
+url: https://balaharipm.github.io
+baseurl: /DP-700-ExamPrep
 
 # Build settings
 markdown: kramdown
