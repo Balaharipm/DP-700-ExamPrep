@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP-700 Interactive Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">DP-700 Exam Flashcards</h1>
+            <p class="subtitle">Microsoft Fabric Data Engineer Associate</p>
+        </header>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <span class="card-counter">
+                    <span id="current-card">1</span> / <span id="total-cards">30</span>
+                </span>
+                <span class="progress-percentage" id="progress-percentage">3%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Main Flashcard Area -->
+        <main class="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner">
+                    <!-- Question Side -->
+                    <div class="flashcard-front">
+                        <div class="card-header">
+                            <span class="card-type">Question</span>
+                            <button class="flip-hint" aria-label="Click to flip card">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                    <path d="M21 3v5h-5"/>
+                                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                    <path d="M3 21v-5h5"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <p class="question-text" id="question-text">
+                                What are the three main categories of questions on the DP-700 exam?
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="flip-instruction">Click to reveal answer</span>
+                        </div>
+                    </div>
+
+                    <!-- Answer Side -->
+                    <div class="flashcard-back">
+                        <div class="card-header">
+                            <span class="card-type">Answer</span>
+                            <button class="flip-hint" aria-label="Click to flip card">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                    <path d="M21 3v5h-5"/>
+                                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                    <path d="M3 21v-5h5"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <p class="answer-text" id="answer-text">
+                                Implementing and managing analytic solutions, ingesting and transforming data, and monitoring and optimizing analytic solutions (with roughly equal weighting).
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="flip-instruction">Click to see question</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <div class="navigation-controls">
+                <button class="nav-btn" id="prev-btn" aria-label="Previous card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Previous
+                </button>
+                
+                <div class="center-controls">
+                    <button class="action-btn shuffle-btn" id="shuffle-btn" aria-label="Shuffle cards">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 3h5v5"/>
+                            <path d="M4 20L21 3"/>
+                            <path d="M21 16v5h-5"/>
+                            <path d="M15 15l6 6"/>
+                            <path d="M4 4l5 5"/>
+                        </svg>
+                        Shuffle
+                    </button>
+                    
+                    <button class="action-btn reset-btn" id="reset-btn" aria-label="Reset to first card">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M3 21v-5h5"/>
+                        </svg>
+                        Reset
+                    </button>
+                </div>
+
+                <button class="nav-btn" id="next-btn" aria-label="Next card">
+                    Next
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Study Progress -->
+        <div class="study-stats">
+            <div class="stat-item">
+                <span class="stat-label">Cards Studied</span>
+                <span class="stat-value" id="cards-studied">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Session Time</span>
+                <span class="stat-value" id="session-time">00:00</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Use arrow keys for navigation • Space to flip cards • Good luck with your DP-700 exam!</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="flashcards.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
